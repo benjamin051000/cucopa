@@ -4,12 +4,17 @@ use std::{
     path,
 };
 
-pub fn cuco(cmd: &str, args: Vec<String>) -> io::Result<()> {
+pub fn cuco() -> io::Result<()> {
+    let mut args: Vec<_> = std::env::args().collect();
+    let cmd = args.remove(0);
+
     // Print what we are doing.
-    let keyword = match cmd {
-        "cu" => "Cut",
-        "co" => "Copy",
-        _ => unreachable!()
+    let keyword = if cmd.ends_with("cu") {
+        "Cut"
+    } else if cmd.ends_with("co") {
+        "Copy"
+    } else {
+        unreachable!()
     };
     println!("{}", keyword);
     for arg in &args {
