@@ -5,6 +5,17 @@ use std::{
 };
 
 pub fn cuco(cmd: &str, args: Vec<String>) -> io::Result<()> {
+    // Print what we are doing.
+    let keyword = match cmd {
+        "cu" => "Cut",
+        "co" => "Copy",
+        _ => unreachable!()
+    };
+    println!("{}", keyword);
+    for arg in &args {
+        println!("\t{}", arg);
+    }
+
     let clipboard_path =
         xdg::BaseDirectories::with_prefix("cucopa").place_state_file("clipboard")?;
 
