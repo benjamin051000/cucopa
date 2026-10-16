@@ -5,8 +5,6 @@ fn read_clipboard() -> io::Result<String> {
         .get_state_file("clipboard")
         .ok_or_else(|| io::Error::other("clipboard file not found"))?;
 
-    dbg!(&clipboard_path);
-
     let clipboard = fs::read_to_string(clipboard_path)?;
 
     Ok(clipboard)

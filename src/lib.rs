@@ -5,11 +5,8 @@ use std::{
 };
 
 pub fn cuco(cmd: &str, args: Vec<String>) -> io::Result<()> {
-    println!("{}: {}", cmd, args.join(","));
     let clipboard_path =
         xdg::BaseDirectories::with_prefix("cucopa").place_state_file("clipboard")?;
-
-    dbg!(&clipboard_path);
 
     let mut clipboard_file = File::create(clipboard_path)?;
 
