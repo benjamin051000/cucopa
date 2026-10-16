@@ -20,17 +20,9 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     let raw = read_clipboard()?;
     let (cmd, mut args) = parse_clipboard(&raw)?;
 
-    let actual_cmd = if cmd.ends_with("cu") {
-        "mv"
-    } else if cmd.ends_with("co") {
-        "cp"
-    } else {
-        unreachable!()
-    };
-
     args.push(".");
 
-    Command::new(actual_cmd).args(args).status()?;
+    Command::new(cmd).args(args).status()?;
 
     Ok(())
 }

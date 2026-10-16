@@ -9,10 +9,10 @@ pub fn cuco() -> io::Result<()> {
     let cmd = args.remove(0);
 
     // Print what we are doing.
-    let keyword = if cmd.ends_with("cu") {
-        "Cut"
+    let (keyword, actual_cmd) = if cmd.ends_with("cu") {
+        ("Cut", "mv")
     } else if cmd.ends_with("co") {
-        "Copy"
+        ("Copy", "cp")
     } else {
         unreachable!()
     };
@@ -35,7 +35,7 @@ pub fn cuco() -> io::Result<()> {
         .map(|p| p.to_string_lossy().into_owned())
         .collect();
 
-    write!(clipboard_file, "{} {}", cmd, args.join(","))?;
+    write!(clipboard_file, "{} {}", actual_cmd, args.join(","))?;
 
     Ok(())
 }
