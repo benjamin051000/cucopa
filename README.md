@@ -10,4 +10,4 @@ cd someplace/else
 pa
 ls  # foo bar baz
 ```
-`co` copies files, `cu` cuts and pastes.
+`co` copies files, `cu` cuts, and `pa` pastes.
